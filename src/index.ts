@@ -8,12 +8,15 @@ function playGame() {
   let playerScore = 0;
   let computerScore = 0;
   for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("Rock, Paper or Scissors?", "");
-    if (playerSelection == null) {
+    const askPlayer = prompt("Rock, Paper or Scissors?", "");
+    if (askPlayer == null) {
       return alert("Cancelled!");
-    } else if (playerSelection == "") {
+    } else if (askPlayer == "") {
       return alert("Field cannot be empty!");
+    } else if (askPlayer.toUpperCase() !== "ROCK" && askPlayer.toUpperCase() !== "SCISSORS" && askPlayer.toUpperCase() !== "PAPER") {
+      return alert("Invalid. Please try again!");
     } else {
+      const playerSelection = askPlayer.toUpperCase();
       const computerSelection = getComputerChoice();
       function rockPaperScissors(playerSelection: string, computerSelection: string): string {
         if ((playerSelection == "PAPER" && computerSelection == "ROCK") || (playerSelection == "SCISSORS" && computerSelection == "PAPER") || (playerSelection == "ROCK" && computerSelection == "SCISSORS")) {
@@ -26,7 +29,7 @@ function playGame() {
           return `You chose ${playerSelection} and Computer chose ${computerSelection}, computer wins!`;
         }
       }
-      console.log(rockPaperScissors(playerSelection.toUpperCase(), computerSelection));
+      console.log(rockPaperScissors(playerSelection, computerSelection));
     }
   }
   if (playerScore > computerScore) {

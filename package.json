@@ -1,0 +1,23 @@
+{
+  "name": "top-rockpaperscissors",
+  "version": "1.0.0",
+  "description": "a simple rock paper scissors project",
+  "main": "",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuhindas56/top-rockpaperscissors.git"
+  },
+  "author": "Tuhin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuhindas56/top-rockpaperscissors/issues"
+  },
+  "homepage": "https://github.com/tuhindas56/top-rockpaperscissors#readme",
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -34,17 +34,17 @@ function playGame() {
                     return `You chose ${playerSelection} and Computer chose ${computerSelection}, computer wins!`;
                 }
             }
-            console.log(rockPaperScissors(playerSelection, computerSelection));
+            alert(rockPaperScissors(playerSelection, computerSelection));
         }
     }
     if (playerScore > computerScore) {
-        console.log(`You win with a score of ${playerScore}`);
+        alert(`You win with a score of ${playerScore}`);
     }
     else if (playerScore == computerScore) {
-        console.log("It's a draw!");
+        alert("It's a draw!");
     }
     else {
-        console.log(`Computer wins with a score of ${computerScore}`);
+        alert(`Computer wins with a score of ${computerScore}`);
     }
 }
 playGame();

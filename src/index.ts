@@ -1,44 +1,66 @@
-function getComputerChoice(): string {
-  const allOutcomes: string[] = ["ROCK", "PAPER", "SCISSORS"];
-  const outcome = allOutcomes[Math.floor(Math.random() * allOutcomes.length)];
-  return outcome!;
+function getPlayerChoice() {
+  const playerChoice = prompt("Rock/Paper/Scissors?", "");
+  if (playerChoice == "") {
+    return "Field cannot be empty!";
+  } else if (playerChoice == null) {
+    return "Cancelled.";
+  } else if (!(playerChoice.toUpperCase() == "ROCK" || playerChoice.toUpperCase() == "PAPER" || playerChoice.toUpperCase() == "SCISSORS")) {
+    return "Invalid!";
+  } else {
+    return playerChoice.toUpperCase();
+  }
 }
 
-function playGame() {
+function getComputerChoice() {
+  const validOutcomes: string[] = ["ROCK", "PAPER", "SCISSORS"];
+  const computerChoice = validOutcomes[Math.floor(Math.random() * validOutcomes.length)];
+  return computerChoice;
+}
+
+function evaluateRounds() {
+  const playerChoice = getPlayerChoice();
+  const computerChoice = getComputerChoice();
+  if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") || (playerChoice == "PAPER" && computerChoice == "ROCK") || (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
+    alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you win!`);
+    return "win";
+  } else if ((playerChoice == "SCISSORS" && computerChoice == "ROCK") || (playerChoice == "ROCK" && computerChoice == "PAPER") || (playerChoice == "PAPER" && computerChoice == "SCISSORS")) {
+    alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you lose!`);
+    return "lose";
+  } else if (playerChoice == computerChoice) {
+    alert(`You chose ${playerChoice} and computer chose ${computerChoice}, it's a draw!`);
+    return "draw";
+  } else {
+    return;
+  }
+}
+
+function scoreEvaluation(playerScore: number, computerScore: number, draws: number) {
+  if (playerScore > computerScore) {
+    alert(`You scored ${playerScore} points and computer scored ${computerScore} points, you win!`);
+  } else if (playerScore < computerScore) {
+    alert(`You scored ${playerScore} points and computer scored ${computerScore} points, you lost!`);
+  } else {
+    alert(`You scored ${playerScore} points and computer scored ${computerScore} points. Total draws are ${draws}. It's a draw!`);
+  }
+}
+
+function playRps() {
   let playerScore = 0;
   let computerScore = 0;
+  let draws = 0;
   for (let i = 0; i < 5; i++) {
-    const askPlayer = prompt("Rock, Paper or Scissors?", "");
-    if (askPlayer == null) {
-      return alert("Cancelled!");
-    } else if (askPlayer == "") {
-      return alert("Field cannot be empty!");
-    } else if (askPlayer.toUpperCase() !== "ROCK" && askPlayer.toUpperCase() !== "SCISSORS" && askPlayer.toUpperCase() !== "PAPER") {
-      return alert("Invalid. Please try again!");
+    const result = evaluateRounds();
+    if (result == "win") {
+      playerScore++;
+    } else if (result == "lose") {
+      computerScore++;
+    } else if (result == "draw") {
+      draws++;
     } else {
-      const playerSelection = askPlayer.toUpperCase();
-      const computerSelection = getComputerChoice();
-      function rockPaperScissors(playerSelection: string, computerSelection: string): string {
-        if ((playerSelection == "PAPER" && computerSelection == "ROCK") || (playerSelection == "SCISSORS" && computerSelection == "PAPER") || (playerSelection == "ROCK" && computerSelection == "SCISSORS")) {
-          playerScore += 1;
-          return `You chose ${playerSelection} and Computer chose ${computerSelection}, you win!`;
-        } else if (playerSelection == computerSelection) {
-          return `You chose ${playerSelection} and Computer chose ${computerSelection}, its a draw!`;
-        } else {
-          computerScore += 1;
-          return `You chose ${playerSelection} and Computer chose ${computerSelection}, computer wins!`;
-        }
-      }
-      alert(rockPaperScissors(playerSelection, computerSelection));
+      return;
     }
   }
-  if (playerScore > computerScore) {
-    alert(`You win with a score of ${playerScore}`);
-  } else if (playerScore == computerScore) {
-    alert("It's a draw!");
-  } else {
-    alert(`Computer wins with a score of ${computerScore}`);
-  }
+  scoreEvaluation(playerScore, computerScore, draws);
 }
 
-playGame();
+playRps();

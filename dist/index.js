@@ -7,7 +7,9 @@ function getPlayerChoice() {
     else if (playerChoice == null) {
         return "Cancelled.";
     }
-    else if (!(playerChoice.toUpperCase() == "ROCK" || playerChoice.toUpperCase() == "PAPER" || playerChoice.toUpperCase() == "SCISSORS")) {
+    else if (!(playerChoice.toUpperCase() == "ROCK" ||
+        playerChoice.toUpperCase() == "PAPER" ||
+        playerChoice.toUpperCase() == "SCISSORS")) {
         return "Invalid!";
     }
     else {
@@ -22,11 +24,15 @@ function getComputerChoice() {
 function evaluateRounds() {
     const playerChoice = getPlayerChoice();
     const computerChoice = getComputerChoice();
-    if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") || (playerChoice == "PAPER" && computerChoice == "ROCK") || (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
+    if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") ||
+        (playerChoice == "PAPER" && computerChoice == "ROCK") ||
+        (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
         alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you win!`);
         return "win";
     }
-    else if ((playerChoice == "SCISSORS" && computerChoice == "ROCK") || (playerChoice == "ROCK" && computerChoice == "PAPER") || (playerChoice == "PAPER" && computerChoice == "SCISSORS")) {
+    else if ((playerChoice == "SCISSORS" && computerChoice == "ROCK") ||
+        (playerChoice == "ROCK" && computerChoice == "PAPER") ||
+        (playerChoice == "PAPER" && computerChoice == "SCISSORS")) {
         alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you lose!`);
         return "lose";
     }
@@ -38,7 +44,7 @@ function evaluateRounds() {
         return;
     }
 }
-function scoreEvaluation(playerScore, computerScore, draws) {
+function evaluateScore(playerScore, computerScore, draws) {
     if (playerScore > computerScore) {
         alert(`You scored ${playerScore} points and computer scored ${computerScore} points, you win!`);
     }
@@ -68,6 +74,6 @@ function playRps() {
             return;
         }
     }
-    scoreEvaluation(playerScore, computerScore, draws);
+    evaluateScore(playerScore, computerScore, draws);
 }
 playRps();

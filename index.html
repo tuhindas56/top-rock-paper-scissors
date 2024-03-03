@@ -4,7 +4,117 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <script src="./dist/index.js" defer></script>
+    <script defer src="./dist/index.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        background-color: #d5f3eb;
+        font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      #choices {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+      }
+
+      button {
+        appearance: none;
+        background-color: #fafbfc;
+        border: 1px solid rgba(27, 31, 35, 0.15);
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+          rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+        box-sizing: border-box;
+        color: #24292e;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        list-style: none;
+        padding: 6px 16px;
+        position: relative;
+        transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        white-space: nowrap;
+        word-wrap: break-word;
+        margin-block: 10px;
+      }
+
+      button:hover {
+        background-color: #f3f4f6;
+        text-decoration: none;
+        transition-duration: 0.1s;
+      }
+
+      button:disabled {
+        background-color: #fafbfc;
+        border-color: rgba(27, 31, 35, 0.15);
+        color: #959da5;
+        cursor: default;
+      }
+
+      button:active {
+        background-color: #edeff2;
+        box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+        transition: none 0s;
+      }
+
+      button:focus {
+        outline: 1px transparent;
+      }
+
+      button:before {
+        display: none;
+      }
+
+      button:-webkit-details-marker {
+        display: none;
+      }
+
+      #result-container {
+        width: 30%;
+        padding: 20px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        background-color: #fafbfc;
+        gap: 10px;
+      }
+
+      #result {
+        text-align: center;
+        font-size: 1.3em;
+        margin-bottom: 20px;
+      }
+      #result-container h1 {
+        text-align: center;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div id="choices">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+    <div id="result-container">
+      <h1>Rock Paper Scissors</h1>
+      <p id="result">First to 5 points wins!</p>
+      <p>Player Score: <span id="playerScore">0</span></p>
+      <p>Computer Score: <span id="computerScore">0</span></p>
+      <p>Draws: <span id="draws">0</span></p>
+      <button id="replay" class="button">Replay</button>
+    </div>
+  </body>
 </html>

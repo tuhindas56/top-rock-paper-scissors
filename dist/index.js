@@ -1,79 +1,70 @@
 "use strict";
-function getPlayerChoice() {
-    const playerChoice = prompt("Rock/Paper/Scissors?", "");
-    if (playerChoice == "") {
-        return "Field cannot be empty!";
+const choices = document.querySelector("#choices");
+const replay = document.querySelector("#replay");
+const result = document.querySelector("#result");
+const playerScore = document.querySelector("#playerScore");
+const computerScore = document.querySelector("#computerScore");
+const draws = document.querySelector("#draws");
+replay.style.display = "none";
+replay.addEventListener("click", () => {
+    result.textContent = "First to 5 points wins!";
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
+    draws.textContent = "0";
+    replay.style.display = "none";
+    choices.style.display = "flex";
+});
+choices.addEventListener("click", (event) => {
+    let target = event.target;
+    switch (target.id) {
+        case "rock":
+            return getPlayerChoice("ROCK");
+        case "paper":
+            return getPlayerChoice("PAPER");
+        case "scissors":
+            return getPlayerChoice("SCISSORS");
+        default:
+            return;
     }
-    else if (playerChoice == null) {
-        return "Cancelled.";
-    }
-    else if (!(playerChoice.toUpperCase() == "ROCK" ||
-        playerChoice.toUpperCase() == "PAPER" ||
-        playerChoice.toUpperCase() == "SCISSORS")) {
-        return "Invalid!";
-    }
-    else {
-        return playerChoice.toUpperCase();
-    }
+});
+function getPlayerChoice(playerChoice) {
+    return playRound(playerChoice);
 }
 function getComputerChoice() {
     const validOutcomes = ["ROCK", "PAPER", "SCISSORS"];
     const computerChoice = validOutcomes[Math.floor(Math.random() * validOutcomes.length)];
     return computerChoice;
 }
-function evaluateRounds() {
-    const playerChoice = getPlayerChoice();
+function playRound(playerChoice) {
     const computerChoice = getComputerChoice();
-    if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") ||
-        (playerChoice == "PAPER" && computerChoice == "ROCK") ||
-        (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
-        alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you win!`);
-        return "win";
+    if (playerChoice === computerChoice) {
+        result.textContent = `You chose ${playerChoice} and computer chose ${computerChoice}, it's a draw!`;
+        draws.textContent = +draws.textContent + 1 + "";
     }
-    else if ((playerChoice == "SCISSORS" && computerChoice == "ROCK") ||
-        (playerChoice == "ROCK" && computerChoice == "PAPER") ||
-        (playerChoice == "PAPER" && computerChoice == "SCISSORS")) {
-        alert(`You chose ${playerChoice} and computer chose ${computerChoice}, you lose!`);
-        return "lose";
+    else if ((playerChoice === "ROCK" && computerChoice === "SCISSORS") ||
+        (playerChoice === "PAPER" && computerChoice === "ROCK") ||
+        (playerChoice === "SCISSORS" && computerChoice === "PAPER")) {
+        result.textContent = `You chose ${playerChoice} and computer chose ${computerChoice}, you win!`;
+        playerScore.textContent = +playerScore.textContent + 1 + "";
     }
-    else if (playerChoice == computerChoice) {
-        alert(`You chose ${playerChoice} and computer chose ${computerChoice}, it's a draw!`);
-        return "draw";
+    else {
+        result.textContent = `You chose ${playerChoice} and computer chose ${computerChoice}, you lose!`;
+        computerScore.textContent = +computerScore.textContent + 1 + "";
+    }
+    evaluateScore();
+}
+function evaluateScore() {
+    if (playerScore.textContent == "5") {
+        result.textContent = `You scored ${playerScore.textContent} points and computer scored ${computerScore.textContent} points, you win!`;
+        replay.style.display = "inline";
+        choices.style.display = "none";
+    }
+    else if (computerScore.textContent == "5") {
+        result.textContent = `You scored ${playerScore.textContent} points and computer scored ${computerScore.textContent} points, you lost!`;
+        replay.style.display = "inline";
+        choices.style.display = "none";
     }
     else {
         return;
     }
 }
-function evaluateScore(playerScore, computerScore, draws) {
-    if (playerScore > computerScore) {
-        alert(`You scored ${playerScore} points and computer scored ${computerScore} points, you win!`);
-    }
-    else if (playerScore < computerScore) {
-        alert(`You scored ${playerScore} points and computer scored ${computerScore} points, you lost!`);
-    }
-    else {
-        alert(`You scored ${playerScore} points and computer scored ${computerScore} points. Total draws are ${draws}. It's a draw!`);
-    }
-}
-function playRps() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let draws = 0;
-    for (let i = 0; i < 5; i++) {
-        const result = evaluateRounds();
-        if (result == "win") {
-            playerScore++;
-        }
-        else if (result == "lose") {
-            computerScore++;
-        }
-        else if (result == "draw") {
-            draws++;
-        }
-        else {
-            return;
-        }
-    }
-    evaluateScore(playerScore, computerScore, draws);
-}
-playRps();

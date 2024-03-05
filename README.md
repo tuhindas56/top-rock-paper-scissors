@@ -1,6 +1,6 @@
-# top-rockpaperscissors
+# top-rock-paper-scissors
 
-A simple Rock Paper Scissors project for The Odin Project.
+Simple rock-paper-scissors project for The Odin Project.
 
 Insights gained from this project:
 

@@ -1,7 +1,7 @@
 # top-rockpaperscissors
 A simple Rock Paper Scissors project for The Odin Project.
 
-17/02/24 Added game logic
+17/02/24 Added game logic  
 03/03/24 Built the UI
 
 Insights gained from this project:

@@ -10,6 +10,6 @@ Insights gained from this project:
 - Event Handling
 - Basic DOM manipulation
 
-This is my first proper javascript project, a simple rock-paper-scissors game. It helped reinforce some fundamental JavaScript concepts.
+This is my first proper JavaScript project, a simple rock-paper-scissors game. It helped reinforce some fundamental JavaScript concepts.
 
 **Game Objective**: First to five points wins!
